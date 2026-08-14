@@ -1,0 +1,1038 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SITE, INSTALL, QUICKSTART, FEATURES } from '../config';
+---
+
+<Layout title={`${SITE.name} — ${SITE.tagline}`}>
+
+  {/* ─── NAV ─── */}
+  <nav class="nav">
+    <div class="container nav__inner">
+      <a href="/" class="nav__logo">
+        <span class="nav__logo-icon">&#x25C8;</span>
+        <span class="nav__logo-text">weavecoder</span>
+      </a>
+      <div class="nav__links">
+        <a href="#features">Features</a>
+        <a href="#install">Install</a>
+        <a href="#quickstart">Quickstart</a>
+        <a href={SITE.github} target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  {/* ─── HERO ─── */}
+  <header class="hero">
+    <div class="container hero__inner">
+      <div class="hero__grid">
+        <div class="hero__content reveal">
+          <div class="hero__badge">
+            <span class="hero__badge-dot"></span>
+            v{SITE.version} &middot; {SITE.license} License
+          </div>
+          <h1 class="hero__title">
+            Code with an<br/>
+            <span class="hero__title-accent">intelligent swarm.</span>
+          </h1>
+          <p class="hero__description">
+            {SITE.description}
+          </p>
+          <div class="hero__actions">
+            <a href="#install" class="btn btn--primary">Install now</a>
+            <a href={SITE.github} class="btn btn--ghost" target="_blank" rel="noopener">
+              View source
+              <span class="btn__arrow">&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero__terminal reveal reveal-delay-2">
+          <div class="terminal">
+            <div class="terminal__bar">
+              <div class="terminal__dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="terminal__title">terminal</span>
+            </div>
+            <div class="terminal__body">
+              <div class="terminal__line">
+                <span class="terminal__prompt">$</span>
+                <span class="terminal__cmd">wvc --provider ollama --model llama3.2 run 'build a REST API'</span>
+              </div>
+              <div class="terminal__line terminal__output">
+                <span class="terminal__dim">[swarm]</span> Spawning 3 agents in parallel...
+              </div>
+              <div class="terminal__line terminal__output">
+                <span class="terminal__green">agent-1</span> Generating project structure
+              </div>
+              <div class="terminal__line terminal__output">
+                <span class="terminal__green">agent-2</span> Writing route handlers
+              </div>
+              <div class="terminal__line terminal__output">
+                <span class="terminal__green">agent-3</span> Setting up database schema
+              </div>
+              <div class="terminal__line terminal__output terminal__dim">
+                ── 3/3 complete in 4.2s ──
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Gradient orb */}
+    <div class="hero__orb"></div>
+  </header>
+
+  {/* ─── FEATURES ─── */}
+  <section id="features" class="features">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Capabilities</span>
+        <h2 class="section-title">Everything you need,<br/>nothing you don't.</h2>
+      </div>
+
+      <div class="features__grid">
+        {FEATURES.map((feature, i) => (
+          <div class={`feature-card reveal reveal-delay-${(i % 3) + 1}`}>
+            <div class={`feature-card__icon feature-card__icon--${feature.icon}`}>
+              {feature.icon === 'swarm' && '⬡'}
+              {feature.icon === 'local' && '◉'}
+              {feature.icon === 'graph' && '◈'}
+              {feature.icon === 'search' && '⌕'}
+              {feature.icon === 'incremental' && '↻'}
+              {feature.icon === 'platform' && '⊞'}
+            </div>
+            <h3 class="feature-card__title">{feature.title}</h3>
+            <p class="feature-card__description">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ─── ARCHITECTURE ─── */}
+  <section class="architecture">
+    <div class="container container--narrow">
+      <div class="arch-visual reveal">
+        <div class="arch-visual__ring">
+          <div class="arch-visual__center">
+            <span class="arch-visual__label">wvc</span>
+            <span class="arch-visual__sub">core binary</span>
+          </div>
+          <div class="arch-visual__crates">
+            <div class="arch-crate">
+              <span class="arch-crate__name">wvc-code-graph</span>
+              <span class="arch-crate__desc">tree-sitter &middot; SQLite &middot; FTS5 &middot; petgraph</span>
+            </div>
+            <div class="arch-crate">
+              <span class="arch-crate__name">wvc-embedding</span>
+              <span class="arch-crate__desc">all-MiniLM-L6-v2 &middot; tract-onnx</span>
+            </div>
+            <div class="arch-crate">
+              <span class="arch-crate__name">wvc-swarm-core</span>
+              <span class="arch-crate__desc">agent orchestration &middot; parallel dispatch</span>
+            </div>
+            <div class="arch-crate">
+              <span class="arch-crate__name">wvc-app-core</span>
+              <span class="arch-crate__desc">tools &middot; sessions &middot; server</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ─── INSTALL ─── */}
+  <section id="install" class="install">
+    <div class="container container--narrow">
+      <div class="section-header reveal">
+        <span class="section-label">Get started</span>
+        <h2 class="section-title">One command.<br/>You're running.</h2>
+      </div>
+
+      <div class="install__options">
+        <div class="install-card reveal reveal-delay-1">
+          <div class="install-card__header">
+            <span class="install-card__os">macOS &amp; Linux</span>
+          </div>
+          <div class="install-card__code">
+            <pre><code>{INSTALL.macosLinux}</code></pre>
+            <button class="install-card__copy" data-copy={INSTALL.macosLinux} aria-label="Copy command">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="install-card reveal reveal-delay-2">
+          <div class="install-card__header">
+            <span class="install-card__os">Windows 11</span>
+            <span class="install-card__note">PowerShell 5.1+</span>
+          </div>
+          <div class="install-card__code">
+            <pre><code>{INSTALL.windows}</code></pre>
+            <button class="install-card__copy" data-copy={INSTALL.windows} aria-label="Copy command">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="install-card reveal reveal-delay-3">
+          <div class="install-card__header">
+            <span class="install-card__os">From source</span>
+          </div>
+          <div class="install-card__code">
+            <pre><code>{INSTALL.source}</code></pre>
+            <button class="install-card__copy" data-copy={INSTALL.source} aria-label="Copy command">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ─── QUICKSTART ─── */}
+  <section id="quickstart" class="quickstart">
+    <div class="container container--narrow">
+      <div class="section-header reveal">
+        <span class="section-label">Quickstart</span>
+        <h2 class="section-title">Three steps to your<br/>first swarm.</h2>
+      </div>
+
+      <div class="quickstart__steps">
+        {QUICKSTART.map((step, i) => (
+          <div class={`qs-step reveal reveal-delay-${i + 1}`}>
+            <div class="qs-step__number">{step.step}</div>
+            <div class="qs-step__content">
+              <h3 class="qs-step__title">{step.title}</h3>
+              <div class="qs-step__code">
+                <pre><code>{step.code}</code></pre>
+              </div>
+              {step.note && (
+                <p class="qs-step__note">{step.note}</p>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ─── CTA ─── */}
+  <section class="cta">
+    <div class="container">
+      <div class="cta__inner reveal">
+        <h2 class="cta__title">Ready to weave?</h2>
+        <p class="cta__description">
+          Open source. MIT licensed. Your code, your machine, your models.
+        </p>
+        <div class="cta__actions">
+          <a href="#install" class="btn btn--primary btn--lg">Install Weavecoder</a>
+          <a href={SITE.github} class="btn btn--ghost btn--lg" target="_blank" rel="noopener">
+            Star on GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ─── FOOTER ─── */}
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__left">
+        <span class="footer__logo">&#x25C8; weavecoder</span>
+        <span class="footer__copy">&copy; {new Date().getFullYear()} &middot; {SITE.license}</span>
+      </div>
+      <div class="footer__links">
+        <a href={SITE.github} target="_blank" rel="noopener">GitHub</a>
+        <a href="#features">Features</a>
+        <a href="#install">Install</a>
+        <a href="#quickstart">Quickstart</a>
+      </div>
+    </div>
+  </footer>
+
+</Layout>
+
+<style>
+  /* ─── NAV ─── */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: var(--space-md) 0;
+    background: rgba(12, 14, 16, 0.80);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav__logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 0.02em;
+  }
+
+  .nav__logo-icon {
+    color: var(--accent);
+    font-size: var(--text-lg);
+  }
+
+  .nav__links {
+    display: flex;
+    gap: var(--space-lg);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+  }
+
+  .nav__links a {
+    color: var(--text-secondary);
+    transition: color 0.2s var(--ease-out);
+  }
+
+  .nav__links a:hover {
+    color: var(--text-primary);
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    padding: calc(var(--space-4xl) + 60px) 0 var(--space-3xl);
+    overflow: hidden;
+  }
+
+  .hero__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+    align-items: center;
+  }
+
+  .hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-xs) var(--space-md);
+    border: 1px solid var(--border-medium);
+    border-radius: 100px;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-lg);
+  }
+
+  .hero__badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--code-green);
+    box-shadow: 0 0 8px rgba(106, 191, 105, 0.5);
+  }
+
+  .hero__title {
+    font-family: var(--font-sans);
+    font-size: var(--text-5xl);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: var(--space-lg);
+    color: var(--text-primary);
+  }
+
+  .hero__title-accent {
+    color: var(--accent);
+  }
+
+  .hero__description {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: var(--space-xl);
+  }
+
+  .hero__actions {
+    display: flex;
+    gap: var(--space-md);
+  }
+
+  .hero__orb {
+    position: absolute;
+    top: -200px;
+    right: -100px;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(200, 133, 58, 0.08) 0%,
+      rgba(200, 133, 58, 0.02) 50%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  /* ─── TERMINAL ─── */
+  .terminal {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-medium);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.03);
+  }
+
+  .terminal__bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .terminal__dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .terminal__dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    opacity: 0.4;
+  }
+
+  .terminal__dots span:first-child { background: #E85D4A; opacity: 0.7; }
+  .terminal__dots span:nth-child(2) { background: #E8A94A; opacity: 0.7; }
+  .terminal__dots span:last-child { background: #6ABF69; opacity: 0.7; }
+
+  .terminal__title {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+  }
+
+  .terminal__body {
+    padding: var(--space-lg);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    line-height: 1.8;
+  }
+
+  .terminal__line {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .terminal__prompt {
+    color: var(--accent);
+    margin-right: var(--space-sm);
+  }
+
+  .terminal__cmd {
+    color: var(--text-primary);
+  }
+
+  .terminal__output {
+    padding-left: var(--space-lg);
+    color: var(--text-secondary);
+  }
+
+  .terminal__dim {
+    color: var(--text-muted);
+  }
+
+  .terminal__green {
+    color: var(--code-green);
+    font-weight: 700;
+  }
+
+  /* ─── BUTTONS ─── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-lg);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.25s var(--ease-out);
+    text-decoration: none;
+  }
+
+  .btn--primary {
+    background: var(--accent);
+    color: var(--text-inverse);
+    border-color: var(--accent);
+  }
+
+  .btn--primary:hover {
+    background: #D4943F;
+    color: var(--text-inverse);
+    box-shadow: 0 0 24px rgba(200, 133, 58, 0.3);
+  }
+
+  .btn--ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    border-color: var(--border-medium);
+  }
+
+  .btn--ghost:hover {
+    color: var(--text-primary);
+    border-color: var(--text-muted);
+  }
+
+  .btn--lg {
+    padding: var(--space-md) var(--space-xl);
+    font-size: var(--text-base);
+  }
+
+  .btn__arrow {
+    transition: transform 0.2s var(--ease-out);
+  }
+
+  .btn:hover .btn__arrow {
+    transform: translateX(3px);
+  }
+
+  /* ─── SECTIONS ─── */
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-3xl);
+  }
+
+  .section-label {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: var(--space-md);
+  }
+
+  .section-title {
+    font-family: var(--font-sans);
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+  }
+
+  /* ─── FEATURES ─── */
+  .features {
+    padding: var(--space-4xl) 0;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .features__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .feature-card {
+    padding: var(--space-xl);
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    transition: all 0.3s var(--ease-out);
+  }
+
+  .feature-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-medium);
+    transform: translateY(-2px);
+  }
+
+  .feature-card__icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    border-radius: 8px;
+    margin-bottom: var(--space-md);
+    background: var(--accent-dim);
+    color: var(--accent);
+  }
+
+  .feature-card__icon--local { background: var(--code-green-dim); color: var(--code-green); }
+  .feature-card__icon--graph { background: rgba(130, 170, 255, 0.10); color: #82AAFF; }
+  .feature-card__icon--search { background: rgba(200, 180, 140, 0.10); color: #C8B48C; }
+  .feature-card__icon--incremental { background: rgba(200, 133, 58, 0.10); color: var(--accent); }
+  .feature-card__icon--platform { background: rgba(160, 154, 146, 0.10); color: var(--text-secondary); }
+
+  .feature-card__title {
+    font-family: var(--font-sans);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+    color: var(--text-primary);
+  }
+
+  .feature-card__description {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* ─── ARCHITECTURE ─── */
+  .architecture {
+    padding: var(--space-3xl) 0;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .arch-visual {
+    text-align: center;
+  }
+
+  .arch-visual__ring {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xl);
+    padding: var(--space-2xl);
+    border: 1px solid var(--border-medium);
+    border-radius: 16px;
+    background: var(--bg-surface);
+  }
+
+  .arch-visual__center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-lg) var(--space-2xl);
+    background: var(--accent-dim);
+    border: 1px solid var(--border-accent);
+    border-radius: 8px;
+  }
+
+  .arch-visual__label {
+    font-family: var(--font-mono);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .arch-visual__sub {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .arch-visual__crates {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+
+  .arch-crate {
+    padding: var(--space-md) var(--space-lg);
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    text-align: left;
+  }
+
+  .arch-crate__name {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+  }
+
+  .arch-crate__desc {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+  }
+
+  /* ─── INSTALL ─── */
+  .install {
+    padding: var(--space-4xl) 0;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .install__options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .install-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .install-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-sm) var(--space-lg);
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--bg-elevated);
+  }
+
+  .install-card__os {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .install-card__note {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+  }
+
+  .install-card__code {
+    position: relative;
+    padding: var(--space-md) var(--space-lg);
+  }
+
+  .install-card__code pre {
+    margin: 0;
+    overflow-x: auto;
+  }
+
+  .install-card__code code {
+    font-size: var(--text-sm);
+    color: var(--code-green);
+    line-height: 1.6;
+  }
+
+  .install-card__copy {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    padding: var(--space-xs);
+    background: transparent;
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s var(--ease-out);
+    opacity: 0;
+  }
+
+  .install-card:hover .install-card__copy {
+    opacity: 1;
+  }
+
+  .install-card__copy:hover {
+    color: var(--text-primary);
+    border-color: var(--border-medium);
+  }
+
+  .install-card__copy.copied {
+    color: var(--code-green);
+    border-color: var(--code-green);
+  }
+
+  /* ─── QUICKSTART ─── */
+  .quickstart {
+    padding: var(--space-4xl) 0;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .quickstart__steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+  }
+
+  .qs-step {
+    display: flex;
+    gap: var(--space-lg);
+    padding: var(--space-xl);
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+  }
+
+  .qs-step__number {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid var(--border-accent);
+    border-radius: 8px;
+  }
+
+  .qs-step__content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .qs-step__title {
+    font-family: var(--font-sans);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+    color: var(--text-primary);
+  }
+
+  .qs-step__code {
+    padding: var(--space-sm) var(--space-md);
+    background: var(--bg-deep);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    margin-bottom: var(--space-sm);
+    overflow-x: auto;
+  }
+
+  .qs-step__code pre {
+    margin: 0;
+  }
+
+  .qs-step__code code {
+    font-size: var(--text-sm);
+    color: var(--code-green);
+  }
+
+  .qs-step__note {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+
+  /* ─── CTA ─── */
+  .cta {
+    padding: var(--space-4xl) 0;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .cta__inner {
+    text-align: center;
+    padding: var(--space-3xl) var(--space-2xl);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-medium);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta__inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(200, 133, 58, 0.06) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  .cta__title {
+    font-family: var(--font-sans);
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+    position: relative;
+  }
+
+  .cta__description {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xl);
+    position: relative;
+  }
+
+  .cta__actions {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    position: relative;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    padding: var(--space-xl) 0;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .footer__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer__left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+
+  .footer__logo {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .footer__copy {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+  }
+
+  .footer__links {
+    display: flex;
+    gap: var(--space-lg);
+    font-size: var(--text-sm);
+  }
+
+  .footer__links a {
+    color: var(--text-muted);
+    transition: color 0.2s var(--ease-out);
+  }
+
+  .footer__links a:hover {
+    color: var(--text-primary);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+    }
+
+    .hero__title {
+      font-size: var(--text-4xl);
+    }
+
+    .features__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .arch-visual__crates {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero__title {
+      font-size: var(--text-3xl);
+    }
+
+    .section-title {
+      font-size: var(--text-3xl);
+    }
+
+    .features__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .nav__links {
+      display: none;
+    }
+
+    .footer__inner {
+      flex-direction: column;
+      gap: var(--space-md);
+      text-align: center;
+    }
+
+    .footer__left {
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .cta__actions {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+
+<script>
+  // Copy-to-clipboard for install commands
+  document.querySelectorAll('.install-card__copy').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const text = btn.getAttribute('data-copy');
+      if (!text) return;
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.classList.add('copied');
+        const svg = btn.innerHTML;
+        btn.innerHTML = '✓';
+        setTimeout(() => {
+          btn.innerHTML = svg;
+          btn.classList.remove('copied');
+        }, 2000);
+      } catch {
+        // Fallback: select text
+      }
+    });
+  });
+
+  // Intersection Observer for scroll-triggered reveals
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+  );
+
+  // Observe elements that should animate on scroll
+  document.querySelectorAll('.feature-card, .install-card, .qs-step').forEach((el) => {
+    el.classList.remove('reveal');
+    el.classList.add('reveal-pending');
+    observer.observe(el);
+  });
+</script>
