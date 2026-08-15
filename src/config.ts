@@ -2,7 +2,7 @@
  * Weavecoder site configuration.
  * Change SITE_DOMAIN here to update the domain across the entire site.
  */
-export const SITE_DOMAIN = 'weavecoder.sh';
+export const SITE_DOMAIN = 'weavecoder.nramos.dev';
 
 export const SITE = {
   name: 'Weavecoder',

@@ -10,7 +10,7 @@ Static landing page for the Weavecoder product, built with [Astro](https://astro
 
 ## Configuration
 
-The domain (`weavecoder.sh`) and all site content are centralized in `src/config.ts`. Change `SITE_DOMAIN` there to update the domain across the entire site.
+The domain (`weavecoder.nramos.dev`) and all site content are centralized in `src/config.ts`. Change `SITE_DOMAIN` there to update the domain across the entire site.
 
 ## Development
 
@@ -23,19 +23,10 @@ npm run preview    # preview the production build locally
 
 ## Deploy
 
-### Cloudflare Pages (recommended)
-
-1. Push to a GitHub repo
-2. Connect the repo in Cloudflare Pages dashboard
-3. Set build command: `npm run build`
-4. Set build output directory: `dist`
-5. Add custom domain `weavecoder.sh` in Cloudflare DNS
-
 ### GitHub Pages
 
-1. Enable GitHub Pages in repo settings
-2. Set source to "GitHub Actions"
-3. The build output in `dist/` will be deployed
+1. Push to `main` — `.github/workflows/deploy.yml` builds with `npm ci && npm run build` and deploys `dist/` via the official Pages actions.
+2. The site is served at `https://nicolasramos-es.github.io/weavecoder-landing/` (with `ASTRO_BASE` set in the workflow) until the custom domain `weavecoder.nramos.dev` goes live; then remove `ASTRO_BASE` from the workflow so it serves from the root.
 
 ## File Structure
 
