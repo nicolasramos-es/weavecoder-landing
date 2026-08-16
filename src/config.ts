@@ -15,8 +15,8 @@ export const SITE = {
 };
 
 export const INSTALL = {
-  macosLinux: `curl -fsSL https://${SITE_DOMAIN}/install | bash`,
-  windows: `irm https://${SITE_DOMAIN}/install.ps1 | iex`,
+  macosLinux: `curl -fsSL https://raw.githubusercontent.com/nicolasramos-es/weavecoder/main/install.sh | bash`,
+  windows: `irm https://raw.githubusercontent.com/nicolasramos-es/weavecoder/main/install.ps1 | iex`,
   source: `git clone https://github.com/nicolasramos-es/weavecoder.git
 cd weavecoder
 cargo build --release --bin wvc`,
