@@ -31,12 +31,6 @@ jobs:
         run: npm ci
 
       - name: Build
-        # ASTRO_BASE keeps assets working at the project URL
-        # (https://nicolasramos-es.github.io/weavecoder-landing/) until the
-        # custom domain weavecoder.nramos.dev is attached in Pages settings
-        # (NRA-528). Remove this env once the custom domain is live.
-        env:
-          ASTRO_BASE: /weavecoder-landing/
         run: npm run build
 
       - name: Upload Pages artifact

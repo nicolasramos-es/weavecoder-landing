@@ -26,7 +26,7 @@ npm run preview    # preview the production build locally
 ### GitHub Pages
 
 1. Push to `main` — `.github/workflows/deploy.yml` builds with `npm ci && npm run build` and deploys `dist/` via the official Pages actions.
-2. The site is served at `https://nicolasramos-es.github.io/weavecoder-landing/` (with `ASTRO_BASE` set in the workflow) until the custom domain `weavecoder.nramos.dev` goes live; then remove `ASTRO_BASE` from the workflow so it serves from the root.
+2. The site is served at the custom domain `https://weavecoder.nramos.dev/` (the CNAME is attached in the Pages settings). The build always serves from the root; do not set `ASTRO_BASE` for production builds.
 
 ## File Structure
 
